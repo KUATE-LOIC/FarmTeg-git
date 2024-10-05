@@ -53,7 +53,7 @@
             </div>
             
             <div class="form-group row mb-0">  
-                <div class="input-group custom col-md-6" >
+                <!-- <div class="input-group custom col-md-6" >
                     <div class="form-floating">
                         <input
                             name="date_mouvement"
@@ -64,7 +64,7 @@
                         />
                         <label for="date">Date*</label>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="input-group custom col-md-4" >
                     <div class="form-floating">

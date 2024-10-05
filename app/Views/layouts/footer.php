@@ -18,17 +18,14 @@
 		<script src="<?= base_url('assets/src/plugins/datatables/js/dataTables.bootstrap4.min.js')?>"></script>
 		<script src="<?= base_url('assets/src/plugins/datatables/js/dataTables.responsive.min.js')?>"></script>
 		<script src="<?= base_url('assets/src/plugins/datatables/js/responsive.bootstrap4.min.js')?>"></script>
+		<script src="<?= base_url('assets/niceadmin/vendor/bootstrap/js/bootstrap.bundle.min.js')?>"></script>
+		<script src="<?= base_url('assets/niceadmin/vendor/chart.js/chart.umd.js')?>"></script>
+        <script src="<?= base_url('assets/vendor/jquery-ui-1.12.1/jquery-ui.min.js')?>"></script>
+
 		
-		<!-- buttons for Export datatable -->
-		<!-- <script src="<?= base_url('assets/src/plugins/datatables/js/dataTables.buttons.min.js')?>"></script>
-		<script src="<?= base_url('assets/src/plugins/datatables/js/buttons.bootstrap4.min.js')?>"></script>
-		<script src="<?= base_url('assets/src/plugins/datatables/js/buttons.print.min.js')?>"></script>
-		<script src="<?= base_url('assets/src/plugins/datatables/js/buttons.html5.min.js')?>"></script>
-		<script src="<?= base_url('assets/src/plugins/datatables/js/buttons.flash.min.js')?>"></script>
-		<script src="<?= base_url('assets/src/plugins/datatables/js/pdfmake.min.js')?>"></script>
-		<script src="<?= base_url('assets/src/plugins/datatables/js/vfs_fonts.js')?>"></script> -->
+		
 		<!-- Datatable Setting js -->
-		<script src="<?= base_url('assets/vendors/scripts/datatable-setting.js')?>"></script>
+		<!-- <script src="<?= base_url('assets/vendors/scripts/datatable-setting.js')?>"></script> -->
 		<script src="<?= base_url('assets/vendors/scripts/dashboard3.js')?>"></script>
 		<script src="<?= base_url('assets/niceadmin/vendor/echarts/echarts.min.js')?>"></script>
 

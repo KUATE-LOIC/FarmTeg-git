@@ -22,6 +22,8 @@ class Session extends BaseConfig
      * @var class-string<BaseHandler>
      */
     public string $driver = FileHandler::class;
+    // public $driver = 'CodeIgniter\Session\Handlers\DatabaseHandler'; // ou 'CodeIgniter\Session\Handlers\FileHandler'
+    // public $sessionExpiration = 10; // 2 heures
 
     /**
      * --------------------------------------------------------------------------

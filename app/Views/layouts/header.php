@@ -1,9 +1,18 @@
+<?php
+
+	$data['id'] = session()->get('id_personnel');
+	$data['nom'] = session()->get('nom_personnel');
+	$data['email'] = session()->get('email_personnel');
+	// dd($data);
+
+?>
+
 <!DOCTYPE html>
 <html>
 	<head>
 		<!-- Basic Page Info -->
 		<meta charset="utf-8" />
-		<title>DeskApp - Bootstrap Admin Dashboard HTML Template</title>
+		<title>FARMTEG</title>
 
 		<!-- Site favicon -->
 		<link
@@ -12,6 +21,12 @@
 			href="<?= base_url('assets/vendors/images/apple-touch-icon.png')?>"
 		/>
 		<link href="<?= base_url('assets/niceadmin/vendor/remixicon/remixicon.css" rel="stylesheet')?>">
+
+		<link
+			rel="stylesheet"
+			type="text/css"
+			href="<?= base_url('assets/src/plugins/jquery-steps/jquery.steps.css')?>"
+		/>
 
 		<link
 			rel="icon"
@@ -59,7 +74,13 @@
 			type="text/css"
 			href="<?= base_url('assets/src/plugins/datatables/css/responsive.bootstrap4.min.css')?>"
 		/>
+
 		<script src="<?= base_url('assets/vendor/js/jquery.min.js')?>"></script>
+
+		<link rel="stylesheet" href="<?= base_url('assets/vendor/jquery-ui-1.12.1/jquery-ui.css')?>">
+
+
+		
 		<link rel="stylesheet" type="text/css" href="<?= base_url('assets/vendors/styles/style.css')?>" />
 
 		<!-- Global site tag (gtag.js) - Google Analytics -->
@@ -72,6 +93,14 @@
 			src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2973766580778258"
 			crossorigin="anonymous"
 		></script>
+		<style>
+			.border-danger {
+				border-color: red !important;
+			}
+			.shadow {
+				box-shadow: 0 0 10px rgba(255, 0, 0, 0.5) !important;
+			}
+		</style>
 		<script>
 			window.dataLayer = window.dataLayer || [];
 			function gtag() {
@@ -117,15 +146,10 @@
 					class="search-toggle-icon bi bi-search"
 					data-toggle="header_search"
 				></div>
-				<div class="header-search">
+				<!-- <div class="header-search">
 					<form>
 						<div class="form-group mb-0">
-							<i class="dw dw-search2 search-icon"></i>
-							<input
-								type="text"
-								class="form-control search-input"
-								placeholder="Search Here"
-							/>
+							
 							<div class="dropdown">
 								<a
 									class="dropdown-toggle no-arrow"
@@ -174,10 +198,10 @@
 							</div>
 						</div>
 					</form>
-				</div>
+				</div> -->
 			</div>
 			<div class="header-right">
-				<div class="dashboard-setting user-notification">
+				<!-- <div class="dashboard-setting user-notification">
 					<div class="dropdown">
 						<a
 							class="dropdown-toggle no-arrow"
@@ -187,7 +211,7 @@
 							<i class="dw dw-settings2"></i>
 						</a>
 					</div>
-				</div>
+				</div> -->
 				<!-- <div class="user-notification">
 					<div class="dropdown">
 						<a
@@ -276,22 +300,35 @@
 							data-toggle="dropdown"
 						>
 							<span class="user-icon">
-								<img src="<?= base_url('assets/vendors/images/photo1.jpg')?>" alt="" />
+								<h1 class="py-1"><i class="icon-copy dw dw-user-12 text-success"></i></h1>
 							</span>
-							<span class="user-name">Ross C. Lopez</span>
+							<span class="user-name"><?= $data['nom']?></span>
 						</a>
 						<div
 							class="dropdown-menu dropdown-menu-right dropdown-menu-icon-list"
 						>
-							<a class="dropdown-item" href="profile.html"
-								><i class="dw dw-user1"></i> Profile</a
-							>
-							<a class="dropdown-item" href="profile.html"
-								><i class="dw dw-settings2"></i> Setting</a
-							>
-							<a class="dropdown-item" href="login.html"
-								><i class="dw dw-logout"></i> Log Out</a
-							>
+
+							<a class="dropdown-item text-dark" href="<?= site_url('list_personnel')?>"
+							><i class="fa fa-users"></i> <?= lang("Text.User")?></a>
+
+							<button	type="button" class="btn dropdown-toggle waves-effect dropdown-item bg-white text-dark py-2" data-toggle="dropdown"	aria-expanded="false">
+								<i class="bi bi-globe"></i><?= lang("Text.Language")?><span class="caret"></span>
+							</button>
+							<div class="dropdown-menu">
+								<a class="dropdown-item" href="<?=site_url('lang/en')?>"><?= lang("Text.English")?></a>
+								<a class="dropdown-item" href="<?=site_url('lang/fr')?>"><?= lang("Text.French")?></a>
+							</div>
+							
+								<div class="dropdown ">
+									<a
+										class="dropdown-toggle no-arrow dropdown-item text-dark py-2"
+										href="javascript:;"
+										data-toggle="right-sidebar"
+									>
+										<i class="dw dw-settings2 mr-2"></i><?= lang("Text.Setting")?></a>
+								</div>
+							<a class="dropdown-item text-dark" href="<?= site_url('logout')?>"
+								><i class="dw dw-logout"></i> <?= lang("Text.Log Out")?></a>
 						</div>
 					</div>
 				</div>
@@ -382,7 +419,7 @@
 						</div>
 					</div>
 
-					<h4 class="weight-600 font-18 pb-10">Menu List Icon</h4>
+					<!-- <h4 class="weight-600 font-18 pb-10">Menu List Icon</h4>
 					<div class="sidebar-radio-group pb-30 mb-10">
 						<div class="custom-control custom-radio custom-control-inline">
 							<input
@@ -458,7 +495,7 @@
 								><i class="dw dw-next"></i
 							></label>
 						</div>
-					</div>
+					</div> -->
 
 					<div class="reset-options pt-30 text-center">
 						<button class="btn btn-danger" id="reset-settings">
@@ -488,84 +525,90 @@
 					<ul id="accordion-menu">
 						<li class="">
 							<a href="<?= site_url('dashboard')?>" class="dropdown-toggle no-arrow">
-								<span class="micon bi bi-speedometer"></span
-								><span class="mtext">Dashboard</span>
+								<span class="micon bi bi-speedometer"></span>
+								<span class="mtext"><?= lang("Text.Dashboard")?></span>
 							</a>
 							
 						</li>
 						<li class="dropdown">
 							<a href="javascript:;" class="dropdown-toggle">
 								<span class="micon bi bi-plus-square-fill"></span>
-								<span class="mtext">Quick Adds</span>
+								<span class="mtext"><?= lang("Text.Quick Adds")?></span>
 							</a>
 							<ul class="submenu">
-								<li><a href="<?= site_url('create_form_elevage')?>"></span><span class="mtext">Add Band</span></a></li>
-								<li><a href="<?= site_url('create_form_ressource1')?>"></span><span class="mtext">Add Feading</span></a></li>
-								<li><a href="<?= site_url('create_form_ressource2')?>"></span><span class="mtext">Treatment</span></a></li>
-								<li><a href="<?= site_url('create_form_produit')?>"></span><span class="mtext">Animal Yield</span></a></li>
+								<li><a href="<?= site_url('create_form_elevage')?>"></span><span class="mtext"><?= lang("Text.Add Band")?></span></a></li>
+								<li><a href="<?= site_url('create_form_ressource1')?>"></span><span class="mtext"><?= lang("Text.Add Feading")?></span></a></li>
+								<li><a href="<?= site_url('create_form_ressource2')?>"></span><span class="mtext"><?= lang("Text.Treatment")?></span></a></li>
+								<li><a href="<?= site_url('create_form_produit')?>"></span><span class="mtext"><?= lang("Text.Animal Yield")?></span></a></li>
 							</ul>
 						</li>
 						<li class="">
 							<a href="<?= site_url('list_type')?>" class="dropdown-toggle no-arrow">
 								<span class="micon bi bi-bezier"></span
-								><span class="mtext">Species</span>
+								><span class="mtext"><?= lang("Text.Species")?>
+								</span>
 							</a>
 							
 						</li>
 						<li class="dropdown">
 							<a href="javascript:;" class="dropdown-toggle">
-								<span class="micon bi bi-bug"></span
-								><span class="mtext">Livestock</span>
+								<span class="micon icon-copy dw dw-fish"></span
+								><span class="mtext"><?= lang("Text.Livestock")?>
+								</span>
 							</a>
 							<ul class="submenu">
-								<li><a href="<?= site_url('list_elevage')?>">Animals Band</a></li>
-								<li><a href="<?= site_url('list_produit2')?>">Animals products </a></li>
-								<li><a href="<?= site_url('list_dead')?>">Deaths </a></li>
+								<li><a href="<?= site_url('list_elevage')?>"><?= lang("Text.Animals Band")?>
+								</a></li>
+								<li><a href="<?= site_url('list_produit2')?>"><?= lang("Text.Animals products")?>
+								</a></li>
+								<li><a href="<?= site_url('list_dead')?>"><?= lang("Text.Deaths")?>
+								</a></li>
 							</ul>
 						</li>
 						
 						<li class="dropdown">
 							<a href="javascript:;" class="dropdown-toggle">
 								<span class="micon fi-mountains"></span
-								><span class="mtext"> Ressources </span>
+								><span class="mtext"> <?= lang("Text.Ressources")?>
+								</span>
 							</a>
 							<ul class="submenu">
-								<li><a href="<?= site_url('list_ressource')?>">Inventory</a></li>
-								<li><a href="<?= site_url('create_form_move')?>">Move To Stock</a></li>
-								<li><a href="<?= site_url('create_form_remove')?>">Feed/Treat</a></li>
+								<li><a href="<?= site_url('list_ressource')?>"><?= lang("Text.Inventory")?>
+								</a></li>
+								<li><a href="<?= site_url('create_form_ressource1')?>"></span><span class="mtext"><?= lang("Text.Add Feading")?></span></a></li>
+								<li><a href="<?= site_url('create_form_ressource2')?>"></span><span class="mtext"><?= lang("Text.Treatment")?></span></a></li>
+								<li><a href="<?= site_url('create_form_move')?>"><?= lang("Text.Move To Stock")?>
+								</a></li>
+								<li><a href="<?= site_url('create_form_remove')?>"><?= lang("Text.Feed/Treat")?>
+								</a></li>
 								</ul>
 						</li>
 
 						<li class="dropdown">
 							<a href="javascript:;" class="dropdown-toggle">
 								<span class="micon bi bi-shop"></span
-								><span class="mtext">Market</span>
+								><span class="mtext"><?= lang("Text.Market")?>
+								</span>
 							</a>
 							<ul class="submenu">
-								<li><a href="<?= site_url('dashboard2')?>">Dashboard</a></li>
-								<li><a href="<?= site_url('list_produit')?>">Sales</a></li>
+								<li><a href="<?= site_url('dashboard2')?>"><?= lang("Text.Dashboard")?></a></li>
+								<li><a href="<?= site_url('list_produit')?>"><?= lang("Text.Sales")?></a></li>
+								<li><a href="<?= site_url('list_unite')?>"><?= lang("Text.Units/Prices")?></a></li>
 								</ul>
 						</li>
 						
 						<li class="">
 							<a href="<?= site_url('list_mouvement')?>" class="dropdown-toggle no-arrow">
 								<span class="micon bi bi-inboxes-fill"></span
-								><span class="mtext">Stock</span>
+								><span class="mtext"><?= lang("Text.Stock")?></span>
 							</a>
 							
 						</li>
-												
-						<li class="">
-							<a href="<?= site_url('dashboard')?>" class="dropdown-toggle no-arrow">
-								<span class="micon bi bi-cash-coin"></span
-								><span class="mtext">Accounting</span>
-							</a>
-							
-						</li>
+						
 						<li class="">
 							<a href="<?= site_url('report1')?>" class="dropdown-toggle no-arrow">
 								<span class="micon bi bi-journals"></span
-								><span class="mtext">Repports</span>
+								><span class="mtext"><?= lang("Text.Repports")?></span>
 							</a>
 							
 						</li>

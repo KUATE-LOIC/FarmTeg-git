@@ -1,5 +1,6 @@
 
 <?= $this->include('layouts/header.php');?>
+<link href="<?= base_url('assets/vendor/jquery-ui-1.12.1/jquery.ui.min.css')?>">
 
 <div class="main-container ">
     <div class="pd-20 card-box mb-30">
@@ -134,4 +135,33 @@
         </form> 
     </div>
 </div>
+
+<script>
+    $(function(){
+        
+        $('#client').autocomplete({
+            source: function(request, response){
+                $.ajax({
+                    url: "<?= site_url('autocomplete')?>",
+                    methode: "GET",
+                    data: {
+                        keyword: request.term
+                    },
+                    success: function(data){
+                        response(data);
+                        console.log(data);
+                    }
+                });
+            },
+            minLength: 1,
+            select: function(event, ui){
+                $('#client').val(ui.item.client);
+                $('#id').val(ui.item.id);
+                $('#libelle').val(ui.item.libelle);
+                return false;
+            }
+        });
+
+    })
+</script>
 <?= $this->include('layouts/footer.php');?>

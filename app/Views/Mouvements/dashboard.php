@@ -3,7 +3,8 @@
 <div class="main-container bg-light">
     <div class="xs-pd-20-10 pd-ltr-20">
         <div class="title pb-20">
-            <h2 class="h3 mb-0">Market Place</h2>
+            <h2 class="h3 mb-0"><?= lang("Text.Market Place")?>
+            </h2>
         </div>
 
         <div class="row pb-10">
@@ -17,7 +18,8 @@
                     </div>
                     <div class="d-flex justify-content-between align-items-end">
                         <div class="text-white">
-                            <div class="font-20 h3 text-white">Total Income</div>
+                            <div class="font-20 h3 text-white"><?= lang("Text.Total Income")?>
+                            </div>
                             <div class="font-24 weight-500"><?= $sumMont['sum']?></div>
                         </div>
                         <div class="max-width-150  d-flex justify-content-end">
@@ -37,7 +39,8 @@
                     </div>
                     <div class="d-flex justify-content-between align-items-end">
                         <div class="text-white">
-                            <div class="font-20 h3 text-white">Sales</div>
+                            <div class="font-20 h3 text-white"><?= lang("Text.Sales")?>
+                            </div>
                             <div class="font-24 weight-500"><?= $nbrSale['sales']?></div>
                         </div>
                         <div class="max-width-150  d-flex justify-content-end">
@@ -57,7 +60,8 @@
                     </div>
                     <div class="d-flex justify-content-between align-items-end">
                         <div class="text-white">
-                            <div class="font-20 h3 text-white">Total Clients</div>
+                            <div class="font-20 h3 text-white"><?= lang("Text.Total Clients")?>
+                            </div>
                             <div class="font-24 weight-500"><?= $nbrCli['nbr']?></div>
                         </div>
                         <div class="max-width-150  d-flex justify-content-end">
@@ -80,7 +84,8 @@
                             <!-- <i class="icon-copy fa fa-stethoscope" aria-hidden="true"></i> -->
                         </div>
                         <div class="font-14 text-right">
-                            <div class="h3 text-white"><i class="icon-copy ion-arrow-up-c "></i>Top Product</div>
+                            <div class="h3 text-white"><i class="icon-copy ion-arrow-up-c "></i><?= lang("Text.Top Product")?>
+                            </div>
                             <!-- <div class="font-12">Since last month</div> -->
                         </div>
                     </div>
@@ -98,7 +103,8 @@
                 <div class="col-lg-12 px-0">
                         <div class="card border-0 shadow" style="border-radius: 12px;">
                             <div class="card-body">
-                            <h5 class="card-title">Products Sold</h5>
+                            <h5 class="card-title"><?= lang("Text.Products Sold")?>
+                            </h5>
 
                             <!-- Donut Chart -->
                             <div id="donutChart" style="min-height: 350px;" class="echart"></div>
@@ -132,26 +138,26 @@
                                         labelLine: {
                                             show: false
                                         },
-                                        data: [{
-                                            value: 1048,
-                                            name: 'Search Engine'
-                                            },
-                                            {
-                                            value: 735,
-                                            name: 'Direct'
-                                            },
-                                            {
-                                            value: 580,
-                                            name: 'Email'
-                                            },
-                                            {
-                                            value: 484,
-                                            name: 'Union Ads'
-                                            },
-                                            {
-                                            value: 300,
-                                            name: 'Video Ads'
-                                            }
+                                        data: [
+
+                                            <?php
+                                            $i = 0;
+                                                foreach($total as $key => $val3){
+                                                    // d($val3);
+                                                    $tot[$i] = $val3;
+                                                    $i++;
+                                                    
+                                                        ?>
+                                                        {
+                                                            value: <?php $i=0; echo json_encode($tot[$i]);?>,
+                                                            
+                                                        },
+                                                        <?php
+                                                    
+                                                    
+                                                }
+                                                // dd($total);
+                                            ?>
                                         ]
                                         }]
                                     });
@@ -183,32 +189,51 @@
             <div class="col-md-8 mb-20">
                 <div class="card-box height-100-p pd-20">
                     <div class="d-flex flex-wrap justify-content-between align-items-center pb-0 pb-md-3">
-                        <div class="h5 mb-md-0">Sales per time</div>
+                        <div class="h5 mb-md-0"><?= lang("Text.Sales per time")?>
+                        </div>
                         <div class="form-group mb-md-0">
-                            <select class="form-control form-control-sm selectpicker">
+                            <!-- <select class="form-control form-control-sm selectpicker">
                                 <option value="">Last Week</option>
                                 <option value="">Last Month</option>
                                 <option value="">Last 6 Month</option>
                                 <option value="">Last 1 year</option>
-                            </select>
+                            </select> -->
                         </div>
                     </div>
                     <div class="card-body">
                         <!-- Bar Chart -->
                         <div id="barChart" style="min-height: 400px;" class="echart"></div>
+                        <?php
+                            $i = 0;
+                            foreach($qte as $key => $val1){
+                                $quan[$i] = $val1;
+                                $i++;
+                            }
+                            // print_r($quan);
+                            // dd($quan);
+
+                            foreach($date as $key => $val2){
+                                $datess[$i] = $val2;
+                                $i++;
+                            }
+                            // print_r($datess);
+                            // dd($datess);
+                        ?>
 
                         <script>
+                            const num2 = <?php echo json_encode($quan); ?>;
+                            const num1 = <?php echo json_encode($datess); ?>;
                             document.addEventListener("DOMContentLoaded", () => {
                             echarts.init(document.querySelector("#barChart")).setOption({
                                 xAxis: {
                                 type: 'category',
-                                data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+                                data: num1
                                 },
                                 yAxis: {
                                 type: 'value'
                                 },
                                 series: [{
-                                data: [120, 200, 150, 80, 70, 110, 130],
+                                data: num2,
                                 type: 'bar'
                                 }]
                             });

@@ -5,58 +5,47 @@
     <div class="pd-20 card-box mb-30">
         <form action="<?= site_url('insert_mouvement')?>" method="post">
             <div class="row">
-                <div class="col-md-12 d-flex justify-content-start mb-3 h3 text-success text-nowrap" style="font-size: 25px;">Stock</div>
-            </div>
-            <div class="row">
-                <div class="select-role offset-3">
-                    <div class="btn-group btn-group-toggle " data-toggle="buttons">
-                        <label class="btn active col-3 rounded-0">
-                            <input value="add" type="radio" name="type_mouvement" id="add" />
-                            <div class="icon">
-                                <h4 class=" bi bi-cart-plus-fill fa-2x text-success"></h4>
-                            </div>
-                            <h4 class="">Add</h4>
-                            
-                        </label>
-                        <label class="btn col-3 rounded-0">
-                            <input value="use" type="radio" name="type_mouvement" id="use"/>
-                            <div class="icon">
-                                <h4 class=" bi bi-subtract fa-2x text-success"></h4>
-                            </div>
-                            <h4>Use</h4>
-                            
-                        </label>
-                    </div>
+                <div class="col-md-12 d-flex justify-content-start mb-3 h3 text-success text-nowrap" style="font-size: 25px;"><?= lang("Text.Losses")?>
                 </div>
             </div>
             <div class="row">
-                <div class="input-group custom col-md-6" >
-                    <div class="form-floating">
-                        <select class="form-select rounded-0" id="type" name="nom_mouvement" aria-label="State">
-                            <option selected hidden disabled></option>
-                            <option  value="Product">Product</option>
-                            <option  value="Food">Food</option>
-                            <option  value="Treatement">Treatement</option>
-                        </select>
-                        <label for="type">Stock Of*</label>
-                    </div>
-                </div>
+                <input type="hidden" name="type_mouvement" value="use">
+            </div>
+            <div class="row">
+                <input class="form-select rounded-0" id="stk" type="hidden" name="nom_mouvement">
                 <div class="input-group custom col-md-6" >
                     <div class="form-floating">
                         <input
                             name="type_produit"
-                            id="label"
+                            id="label2"
                             type="text"
                             class="form-control form-control-lg rounded-0"
                             placeholder="Label"
                         />
-                        <label for="labal">Label*</label>
+                        <label for="labal"><?= lang("Text.Label")?>
+                        *</label>
                     </div>
+                </div>
+
+                <div class="input-group custom col-md-6 d-flex flex-column" >
+                    <div class="form-floating w-100">
+                        <input
+                            name="qte_mouvement"
+                            id="qte_mouvement"
+                            type="number"
+                            class="form-control form-control-lg rounded-0"
+                            placeholder="Quantity"
+                        />
+                        <label for="quantite"><?= lang("Text.Quantity")?>
+                        *</label>
+                    </div>
+                    <small id="Warning" style="color: red; display: none;"><?= lang("Text.Stock insuffisant")?>
+                    !</small>
                 </div>
             </div>
             
             <div class="form-group row mb-0">  
-                <div class="input-group custom col-md-6" >
+                <!-- <div class="input-group custom col-md-6" >
                     <div class="form-floating">
                         <input
                             name="date_mouvement"
@@ -67,30 +56,37 @@
                         />
                         <label for="date">Date*</label>
                     </div>
-                </div>
-
-                <div class="input-group custom col-md-4" >
+                </div> -->
+                <div class="input-group custom col-md-6" >
                     <div class="form-floating">
                         <input
-                            name="qte_mouvement"
-                            id="qte_mouvement"
+                            id="max"
                             type="number"
                             class="form-control form-control-lg rounded-0"
-                            placeholder="Quantity"
+                            placeholder="In Stock"
                         />
-                        <label for="quantite">Quantity*</label>
+                        <label for="max"><?= lang("Text.In Stock")?>
+                        </label>
                     </div>
                 </div>
-                <div class="input-group custom col-md-2" >
+
+                <div class="input-group custom col-md-6">
                     <div class="form-floating">
-                        <select class="form-select rounded-0" id="unit" name="unite_mouvement" aria-label="State">
-                            <option selected hidden disabled></option>
-                            <option value="Bags">Bags</option>
-                        </select>
-                        
-                        <label for="unit">Unit*</label>
+                        <input
+                            id="unit"
+                            type="text"
+                            class="form-control form-control-lg rounded-0"
+                            placeholder="In Stock"
+                        />
+                        <label for="unit"><?= lang("Text.Units")?>
+                        </label>
                     </div>
                 </div>
+                <!-- <div class="input-group custom col-md-4" >
+                    <div class="form-floating">
+                        <input class="form-select rounded-0" id="unit" name="unite_mouvement" type="text" readonly >
+                    </div>
+                </div> -->
             </div>    
                 
 
@@ -112,13 +108,69 @@
                     
             <div class="row d-flex justify-content-end">
                 <div class="col-md-1 col-sm-2 offset-sm-3 offset-md-5 w-25">
-                    <button class="btn border-light text-danger" type="reset">Cancel</button>
+                    <button class="btn border-light text-danger" type="reset"><?= lang("Text.Cancel")?>
+                    </button>
                 </div>
                 <div class="col-md-auto col-sm-2 w-50">
-                    <button class="btn border-success bg-light text-success px-4" type="submit">Save</button>
+                    <button id="subbut" class="btn border-success bg-light text-success px-4" type="submit"><?= lang("Text.Save")?>
+                    </button>
                 </div>
             </div>
         </form> 
     </div>
+    
 </div>
+<script>
+    $(function(){
+        $('#subbut').hide();
+        
+        $('#label2').autocomplete({
+            source: function(request, response){
+                $.ajax({
+                    url: "<?= site_url('/labRec2')?>",
+                    methode: "GET",
+                    data: {
+                        keyword: request.term
+                    },
+                    success: function(data){
+                        response(data);
+                        console.log(data);
+                    }
+                });
+            },
+            minLength: 1,
+            select: function(event, ui){
+                $('#label2').val(ui.item.label);
+                $('#stk').val(ui.item.stk);
+                $('#max').val(ui.item.value);
+                $('#max').attr('readonly', true);
+                $('#unit').val(ui.item.unit);
+                $('#unit').attr('readonly', true);
+                maxQuantity = ui.item.value; // Stocker la quantité maximale
+                $('#qte_mouvement').val(''); // Réinitialiser le champ de quantité
+                $('#Warning').hide();
+            return false;
+        }
+    });
+
+    // Écouteur d'événement sur le champ de quantité
+    $('#qte_mouvement').on('input', function() {
+        const quantityValue = parseInt($(this).val(), 10);
+
+        if (quantityValue > maxQuantity) {
+            $(this).css('border', '1px solid red'); // Mettre la bordure en rouge
+            $('#Warning').show(); // Afficher le message d'avertissement
+            $('#subbut').hide(); // Afficher le message d'avertissement
+        } else {
+            $(this).css('border', ''); // Réinitialiser la bordure
+            $('#Warning').hide(); // Cacher le message d'avertissement
+            $('#subbut').show(); // Afficher le message d'avertissement
+
+        }
+    });
+
+    })
+</script>
+
+
 <?= $this->include('layouts/footer.php');?>

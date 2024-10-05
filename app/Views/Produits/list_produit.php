@@ -5,8 +5,10 @@
 				<div class="min-height-200px">
                 <div class="card-box mb-30">
     <div class="pd-20 d-flex justify-content-between">
-        <h2 class="card-title text-blue my-1" style="font-size: 25px;">Sales List</h2>
-        <a href="<?= site_url('create_form_sell')?>" class="btn btn-success "><span class="mtext text-nowrap">New Sale</span></a>
+        <h2 class="card-title text-blue my-1" style="font-size: 25px;"><?= lang("Text.Sales List")?>
+        </h2>
+        <a href="<?= site_url('create_form_sell')?>" class="btn btn-success "><span class="mtext text-nowrap"><?= lang("Text.New Sale")?>
+        </span></a>
     </div>
         
     <div class="pb-20">
@@ -14,11 +16,16 @@
             <thead>
                 <tr>
                 <th class="table-plus">#</th>
-                    <th class="datatable-nosort">Label</th>
-                    <th class="datatable-nosort">Quantity</th>
-                    <th class="datatable-nosort">Purchase Date</th>
-                    <th class="datatable-nosort">Price</th>
-                    <th class="datatable-nosort">Client Name</th>
+                    <th class="datatable-nosort"><?= lang("Text.Label")?>
+                    </th>
+                    <th class="datatable-nosort"><?= lang("Text.Quantity")?>
+                    </th>
+                    <th class="datatable-nosort"><?= lang("Text.Date")?>
+                    </th>
+                    <th class="datatable-nosort"><?= lang("Text.Total Price")?>
+                    </th>
+                    <th class="datatable-nosort"><?= lang("Text.Client Name")?>
+                    </th>
                     <th class="datatable-nosort">Action</th>
                 </tr>
             </thead>
@@ -30,7 +37,7 @@
             <tr>
                 <td class="table-plus"><?= $i++;?></td>
                 <td><?= $produit['libelle_produit']?></td>
-                <td><?= $produit['quantite_produit']?></td>
+                <td><?= $produit['quantite_produit']." ".$produit['unite_mouvement']?></td>
                 <td><?= $produit['date_produit']?></td>
                 <td><?= $produit['montant']?></td>
                 <td><?= $produit['nom_client']?></td>

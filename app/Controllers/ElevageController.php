@@ -20,6 +20,40 @@ class ElevageController extends BaseController
     {
         //
     }
+    public function getName(){
+
+        $request = service('request');
+        $postData = $request -> getPost();
+        $response = array();
+
+        // read new token and assign
+        $response['token'] = csrf_hash();
+
+        $data = array();
+
+        if(isset($postData['search'])){
+            $search = $postData['search'];
+
+            // Fetch records
+            $elevage = new ElevageModel();
+            $elevagelist = $users->select('id_elevage, nom_elevage')
+                    ->like('nom_elevage', $search)
+                    ->orderBy('nom_elevage')
+                    ->findAll(5);
+
+            foreach($elevagelist as $elevagelists){
+                $data[] = array(
+                    "value" => $elevagelists['id_elevage'],
+                    "label" => $elevagelists['nom_elevage']
+                );
+            }
+
+        }
+
+        $response['data'] = $data;
+        return $this->response->setJSON($response);
+
+    }
 
     public function getElevages(){
         return $this->elevageModel->findAll();
@@ -37,9 +71,13 @@ class ElevageController extends BaseController
     public function createElevage()
     {
         $data = $this->request->getPost();
+        // d($data);
         $data['quantite'] = $data['qte_initial'];
+        // d($data);
+        
         if(!$this->elevageModel->save($data)){
             $data['erreurs'] = $this->elevageModel->errors();
+            // dd($data['erreurs']);
         }
         $elevages = $this->getElevages();
 
@@ -93,7 +131,7 @@ class ElevageController extends BaseController
         $id_elevage = $this->request->getVar('id_elevage');
         $data = $this->request->getVar();
         $data['quantite'] = $data['qte_initial'];
-        dd($data);
+        // dd($data);
         if(!$this->elevageModel->update($id_elevage,$data)){
             $data['erreurs'] = $this->elevageModel->errors();
         }

@@ -44,52 +44,65 @@ class GestionController extends BaseController
 
     public function createReports(){
         $data2 = $this->request->getPost(); 
+        // dd($data2);
+        $date1 = new \DateTime($data2['start']);
+        $date2 = new \DateTime($data2['end']);
 
-        extract($data2);
-        $j=0;
-        $cont = false ;
-        foreach($report as $y){
-            if($y=="Band"){
-                
-                $ref[$j] = $y;
-                $cont[$j] = true;
-                $j++;
-                
-            }
-            if($y=="Deaths"){
-                
-                $ref[$j] = $y;
-                $cont[$j] = true;
-                $j++;
-                
-            }
-            if($y=="Food"){
-                
-                $ref[$j] = $y;
-                $cont[$j] = true;
-                $j++;
-                
-            }
-            if($y=="Treat"){
-                
-                $ref[$j] = $y;
-                $cont[$j] = true;
-                $j++;
-                
-            }
-            if($y=="Yields"){
-                
-                $ref[$j] = $y;
-                $cont[$j] = true;
-                $j++;
-            }
-            if($y=="Sales"){
-                $ref[$j] = $y;
-                $cont[$j] = true;
-                $j++;
-                
-            }
-            $loic['ref'] = $ref;
+        if($date2 > $date1){
+
+            extract($data2);
+            $j=0;
+            $cont = false ;
+            foreach($report as $y){
+                if($y=="Band"){
+                    
+                    $ref[$j] = $y;
+                    $cont[$j] = true;
+                    $j++;
+                    
+                }
+                if($y=="Deaths"){
+                    
+                    $ref[$j] = $y;
+                    $cont[$j] = true;
+                    $j++;
+                    
+                }
+                if($y=="Food"){
+                    
+                    $ref[$j] = $y;
+                    $cont[$j] = true;
+                    $j++;
+                    
+                }
+                if($y=="Treat"){
+                    
+                    $ref[$j] = $y;
+                    $cont[$j] = true;
+                    $j++;
+                    
+                }
+                if($y=="Yields"){
+                    
+                    $ref[$j] = $y;
+                    $cont[$j] = true;
+                    $j++;
+                }
+                if($y=="Sales"){
+                    $ref[$j] = $y;
+                    $cont[$j] = true;
+                    $j++;
+                    
+                }
+                $loic['ref'] = $ref;
+
+        
+    }
+        
+        }else{
+        // return view ('Gestions/report_band');
+        return redirect()->back();
+
         }
 
         $loic['band'] = $this->elevageModel->Band($start, $end);
@@ -100,7 +113,7 @@ class GestionController extends BaseController
         $loic['treat'] = $this->ressourceModel->Treat($start, $end);
         // d($start);
         // d($end);
-        // d($loic);
+        // dd($loic);
 
         session()->set('loic' ,$loic);
         // dd(session()->set('loic' ,$loic['treat']));
@@ -125,6 +138,6 @@ class GestionController extends BaseController
         $dompdf->setPaper('A4', 'landscape');
         $dompdf->render();
         $filename = 'rapport_'.date('Y-m-d H i s');
-        $dompdf->stream($filename,['Attachment' => false]);
+        $dompdf->stream($filename,['Attachment' => true]);
     }
 }

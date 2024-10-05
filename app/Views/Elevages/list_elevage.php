@@ -5,9 +5,11 @@
 				<div class="min-height-200px">
                 <div class="card-box mb-30">
     <div class="pd-20 d-flex justify-content-between">
-        <h2 class="card-title text-blue my-1 mr-5" style="font-size: 25px;">Breed List</h2>
+        <h2 class="card-title text-blue my-1 mr-5" style="font-size: 25px;"><?= lang("Text.Breed List")?>
+        </h2>
 
-        <a href="<?= site_url('create_form_elevage')?>" class="btn btn-success px-4 "><span class="mtext text-nowrap">New Band</span></a>
+        <a href="<?= site_url('create_form_elevage')?>" class="btn btn-success px-4 "><span class="mtext text-nowrap"><?= lang("Text.New Band")?>
+        </span></a>
     </div>
         
     <div class="pb-20">
@@ -15,9 +17,10 @@
             <thead>
                 <tr>
                     <th class="table-plus">#</th>
-                    <th>Name</th>
+                    <th><?= lang("Text.Name")?></th>
                     <th>type </th>
-                    <th>quantity</th>
+                    <th><?= lang("Text.Quantity")?>
+                    </th>
                     <!-- <th>Description</th> -->
                     <th>Date</th>
                     <th class="datatable-nosort">Action</th>
@@ -27,6 +30,7 @@
             <?php 
                 $i=1;
                 foreach($elevages as $keys => $elevage){
+                    
             ?>
             <tr>
                 <td class="table-plus"><?= $i++;?></td>

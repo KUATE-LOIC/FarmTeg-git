@@ -3,7 +3,7 @@
 	<head>
 		<!-- Basic Page Info -->
 		<meta charset="utf-8" />
-		<title>DeskApp - Bootstrap Admin Dashboard HTML Template</title>
+		<title>FARMTEG</title>
 
 		<!-- Site favicon -->
 		<link
@@ -45,6 +45,12 @@
 			href="<?= base_url('assets/vendors/styles/icon-font.min.css')?>"
 		/>
 		<link rel="stylesheet" type="text/css" href="<?= base_url('assets/vendors/styles/style.css')?>" />
+		<style>
+			.alert-highlight {
+				box-shadow: 0 0 10px rgba(255, 0, 0, 0.5);
+				border-color: #ff0000;
+			}
+		</style>
 
 		<!-- Global site tag (gtag.js) - Google Analytics -->
 		<script
@@ -106,38 +112,14 @@
 					<div class="col-md-6 col-lg-6">
 						<div class="login-box bg-white box-shadow border-radius-10">
 							<div class="login-title">
-								<h2 class="text-center text-success">Login To Farmteg</h2>
+								<img
+									src="<?= base_url('assets/vendors/images/12.png')?>"
+									alt=""
+									class="col-md-8 offset-md-2 light-logo w-75 d-flex justify-content-center"
+								/>
+								<h2 class="text-center text-success">LOGIN</h2>
 							</div>
-							<form action="<?= site_url('authentif')?>" method="post">
-								<!-- <div class="select-role">
-									<div class="btn-group btn-group-toggle" data-toggle="buttons">
-										<label class="btn active">
-											<input type="radio" name="options" id="admin" />
-											<div class="icon">
-												<img
-													src="<?= base_url('assets/vendors/images/briefcase.svg')?>"
-													class="svg"
-													alt=""
-												/>
-											</div>
-											<span>I'm</span>
-											Manager
-										</label>
-										<label class="btn">
-											<input type="radio" name="options" id="user" />
-											<div class="icon">
-												<img
-													src="<?= base_url('assets/vendors/images/person.svg')?>"
-													class="svg"
-													alt=""
-												/>
-											</div>
-											<span>I'm</span>
-											Employee
-										</label>
-									</div>
-								</div> -->
-								
+							<form id="formlogin" action="<?= site_url('authentif')?>" method="post"  name="formlog">
 								<div class="input-group custom " >
 									<div class="form-floating">
 										<input
@@ -168,54 +150,29 @@
 									</div>
 									<div class="input-group-append custom">
 										<span class="input-group-text"
-											><i class="dw dw-padlock1"></i
+											><i class="dw dw-"></i
 										></span>
 									</div>
 								</div>
 								
-								<!-- <div class="row pb-30">
-									<div class="col-6">
-										<div class="custom-control custom-checkbox">
-											<input
-												type="checkbox"
-												class="custom-control-input"
-												id="customCheck1"
-											/>
-											<label class="custom-control-label" for="customCheck1"
-												>Remember</label
-											>
-										</div>
-									</div>
-									<div class="col-6">
-										<div class="forgot-password">
-											<a href="forgot-password.html">Forgot Password</a>
-										</div>
-									</div>
-								</div> -->
 								<div class="row">
 									<div class="col-sm-12">
 										<div class="input-group mb-0">
-											<!--
-											use code for form submit
-											<input class="btn btn-success btn-lg btn-block" type="submit" value="Sign In">
-										-->
+
+										<?php if (isset($error)) : ?>
+											<div class="alert alert-danger text-center w-100 alert-highlight"><?= $error ?></div>
+										<?php endif; ?>
+
 											<button
 												class="btn btn-success btn-lg btn-block"
-												type="submit"
+												id="con"
+												type="button"
 												>Sign In</button>
 										</div>
 										<div
 											class="font-16 weight-600 pt-10 pb-10 text-center"
 											data-color="green"
 										>
-											OR
-										</div>
-										<div class="input-group mb-0">
-											<a
-												class="btn btn-outline-success btn-lg btn-block"
-												href="<?= site_url('create_form_personnel')?>"
-												>Register To Create Account</a
-											>
 										</div>
 									</div>
 								</div>
@@ -233,6 +190,30 @@
 		<script src="<?= base_url('assets/vendors/scripts/script.min.js')?>"></script>
 		<script src="<?= base_url('assets/vendors/scripts/process.js')?>"></script>
 		<script src="<?= base_url('assets/vendors/scripts/layout-settings.js')?>"></script>
+		<script>
+        $(document).ready(function() {
+            $("#con").click(function() {
+			$(".alert.alert-danger.text-center.w-100.alert-highlight").remove();
+            var login = formlog.email.value;
+            var password = formlog.password.value;
+        
+            if (login.trim() === "" || password.trim() === "") {
+				// Ajouter l'élément en-dessus du bouton si elle n'existe pas
+				if (!$('.alert.alert-danger.w-100.text-center').length) {
+					$('#con').before('<div class="alert alert-danger w-100 text-center">Veillez remplir tous les champs</div>');
+				}
+				// Ajouter l'effet de surbrillance
+				$('.alert.alert-danger.w-100.text-center').addClass('alert-highlight');
+				setTimeout(function() {
+					$('.alert.alert-danger.w-100.text-center').removeClass('alert-highlight');
+				}, 1500);
+				return;
+            }
+            
+            $("#formlogin").submit();
+            });
+        });
+    	</script>
 		<!-- Google Tag Manager (noscript) -->
 		<!-- <noscript
 			><iframe

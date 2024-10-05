@@ -5,9 +5,11 @@
 				<div class="min-height-200px">
                 <div class="card-box mb-30">
     <div class="pd-20 d-flex justify-content-between">
-        <h2 class="card-title text-blue my-1" style="font-size: 25px;">Harvest List</h2>
+        <h2 class="card-title text-blue my-1" style="font-size: 25px;"><?= lang("Text.Harvest List")?>
+        </h2>
 
-        <a href="<?= site_url('create_form_produit')?>" class="btn btn-success "><span class="mtext text-nowrap">New Yield</span></a>
+        <a href="<?= site_url('create_form_produit')?>" class="btn btn-success "><span class="mtext text-nowrap"><?= lang("Text.New Yield")?>
+        </span></a>
     </div>
         
     <div class="pb-20">
@@ -15,10 +17,14 @@
             <thead>
                 <tr>
                 <th class="table-plus">#</th>
-                    <th class="datatable-nosort">Label</th>
-                    <th class="datatable-nosort">Quantity</th>
-                    <th class="datatable-nosort">Produced By</th>
-                    <th class="datatable-nosort">Harvest Date</th>
+                    <th class="datatable-nosort"><?= lang("Text.Label")?>
+                    </th>
+                    <th class="datatable-nosort"><?= lang("Text.Quantity")?>
+                    </th>
+                    <th class="datatable-nosort"><?= lang("Text.Produced By")?>
+                    </th>
+                    <th class="datatable-nosort"><?= lang("Text.Date")?>
+                    </th>
                     <th class="datatable-nosort">Action</th>
                 </tr>
             </thead>
@@ -29,20 +35,7 @@
             ?>
             <tr>
                 <td class="table-plus"><?= $i++;?></td>
-                <?php
-                    if($produit['type_produit']=="Self"){
-                ?>
-                <td><?= $produit['type_produit']?></td>
-
-                <?php
-                    }
-                    else{
-                ?>
                 <td><?= $produit['libelle_produit']?></td>
-
-                <?php
-                    }
-                ?>
                 <td><?= $produit['quantite_produit']?></td>
                 <td><?= $produit['animal']?></td>
                 <td><?= $produit['date_produit']?></td>

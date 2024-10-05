@@ -64,10 +64,28 @@ class RessourceController extends BaseController
 
     public function createRessource()
     {
+        // print_r($_POST);
         $data = $this->request->getPost();
-        if(!$this->ressourceModel->save($data)){
-            $data['erreurs'] = $this->ressourceModel->errors();
+        // dd($data);
+        foreach($data['libelle_ressource'] as $key => $value){
+            $data_2 = [
+                'libelle_ressource'  => $value,  
+                'quantite_ressources' => $data['quantite_ressources'][$key],
+                'type_ressource' => $data['type_ressource'][$key],
+                'unite_ressource' => $data['unite_ressource'][$key],
+                'cout_ressource' => $data['cout_ressource'][$key],
+                'date_obtention' => $data['date_obtention'][$key],
+                'description_ressource' => $data['description_ressource'][$key],
+            ];
+
+            if(!$this->ressourceModel->save($data_2)){
+                $data['erreurs'] = $this->ressourceModel->errors();
+            }
+            // dd($data['erreurs']);
         }
+        // if(!$this->ressourceModel->save($data)){
+        //     $data['erreurs'] = $this->ressourceModel->errors();
+        // }
         $data['ressources'] = $this->getRessources();
         // dd($data);
         return view('Ressources/list_ressource', $data);

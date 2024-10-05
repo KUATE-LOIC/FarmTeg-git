@@ -12,7 +12,7 @@ class ProduitModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = true;
     protected $protectFields    = true;
-    protected $allowedFields    = ['statut_produit', 'animal', 'type_produit', 'date_produit', 'montant', 'libelle_produit', 'description_produit', 'nom_client', 'quantite_produit', 'created_by', 'updated_by', 'deleted_by'];
+    protected $allowedFields    = ['statut_produit', 'animal', 'type_produit', 'date_produit', 'montant', 'libelle_produit', 'description_produit', 'nom_client', 'quantite_produit','unite_mouvement', 'created_by', 'updated_by', 'deleted_by'];
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
 
@@ -44,9 +44,10 @@ class ProduitModel extends Model
     protected $afterDelete    = [];
     
     public function countClient(){
-        return $this->selectCount('nom_client', 'nbr')
+        return $this->distinct()
+                    ->select('nom_client')
                     ->where('statut_produit', 'Sale')
-                    ->first();
+                    ->countAllResults();
         // $dist =$this->distinct()
         //             ->selectCount('nom_client', 'nbr')
         //             ->where('statut_produit', 'Sale')
@@ -63,13 +64,23 @@ class ProduitModel extends Model
                     ->where('statut_produit', 'Sale')
                     ->first();
     }
-    public function chart(){
+    public function qteP(){
         return $this->select('quantite_produit')
-                    ->select('date_produit')
                     ->where('statut_produit', 'Sale')
                     ->findAll();
     }
-    
+    public function dateP(){
+        return $this->select('date_produit')
+                    ->where('statut_produit', 'Sale')
+                    ->findAll();
+    }
+
+    public function countdeath(){
+        return $this->selectCount('id_produit', 'mort')
+                    ->where('statut_produit', 'Death')
+                    ->first();
+    }
+
     public function countBest(){
         return $this->select('libelle_produit')
                     ->selectCount('libelle_produit',' nbr')
@@ -78,6 +89,19 @@ class ProduitModel extends Model
                     ->orderBy('nbr', 'DESC')
                     ->limit(1)
                     ->first();
+    }
+
+    public function pielib(){
+        return $this->select('libelle_produit')
+                    ->where('statut_produit', 'Sale')
+                    ->groupBy('libelle_produit')
+                    ->findAll();
+    }
+    public function pietot(){
+        return $this->selectSum('quantite_produit',' total')
+                    ->where('statut_produit', 'Sale')
+                    ->groupBy('libelle_produit')
+                    ->findAll();
     }
     
     public function Death($start, $end){
@@ -99,6 +123,12 @@ class ProduitModel extends Model
                     ->where('statut_produit', 'Harvest')
                     ->where("date_produit BETWEEN '$start' AND '$end'")
                     ->orderBy('date_produit', 'ASC')
+                    ->findAll();
+    }
+    public function prod(){
+        return $this->distinct()
+                    ->select('id_produit, libelle_produit')
+                    ->where('statut_produit', 'Harvest')
                     ->findAll();
     }
     

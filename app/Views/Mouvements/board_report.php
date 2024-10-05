@@ -23,10 +23,10 @@
                                         <div class="login-box bg-white box-shadow border-radius-10 pt-4">
                                             <form action="<?= site_url('choose_report')?>" method="post">
                                                 <div class="row">
-                                                    <div class="col-md-12 d-flex justify-content-start mb-3 h3 text-success" style="font-size: 25px;">Choose</div>
+                                                    <div class="col-md-12 d-flex justify-content-start mb-3 h3 text-success" style="font-size: 25px;"><?= lang("Text.Choose")?></div>
                                                 </div>
 
-                                                <label class="weight-600">LiveStock</label>
+                                                <label class="weight-600"><?= lang("Text.Livestock")?></label>
 
                                                 <div class="input-group custom mb-1" >
                                                     <div class=" custom-control custom-checkbox mb-5">
@@ -38,7 +38,7 @@
                                                             id="Check1"
                                                         />
                                                         <label class="custom-control-label" for="Check1"
-                                                            >Band</label
+                                                            ><?= lang("Text.Band")?></label
                                                         >
                                                     </div>
                                                 </div>
@@ -53,12 +53,12 @@
                                                             id="Check2"
                                                         />
                                                         <label class="custom-control-label" for="Check2"
-                                                            >Deaths</label
+                                                            ><?= lang("Text.Deaths")?></label
                                                         >
                                                     </div>
                                                 </div>
 
-                                                <label class="weight-600">Resources</label>
+                                                <label class="weight-600"><?= lang("Text.Ressources")?></label>
 
 
                                                 <div class="input-group custom mb-1" >
@@ -71,7 +71,7 @@
                                                             id="Check3"
                                                         />
                                                         <label class="custom-control-label" for="Check3"
-                                                            >Food</label
+                                                            ><?= lang("Text.Food")?></label
                                                         >
                                                     </div>
                                                 </div>
@@ -86,12 +86,12 @@
                                                             id="Check4"
                                                         />
                                                         <label class="custom-control-label" for="Check4"
-                                                            >Treat</label
+                                                            ><?= lang("Text.Treat")?></label
                                                         >
                                                     </div>
                                                 </div>
 
-                                                <label class="weight-600">Products</label>
+                                                <label class="weight-600"><?= lang("Text.Product")?></label>
 
                                                 <div class="input-group custom mb-2" >
                                                     <div class=" custom-control custom-checkbox mb-5">
@@ -103,7 +103,7 @@
                                                             id="Check5"
                                                         />
                                                         <label class="custom-control-label" for="Check5"
-                                                            >Yields</label
+                                                            ><?= lang("Text.Yields")?></label
                                                         >
                                                     </div>
                                                 </div>
@@ -118,7 +118,7 @@
                                                             id="Check6"
                                                         />
                                                         <label class="custom-control-label" for="Check6"
-                                                            >Sales</label
+                                                            ><?= lang("Text.Sales")?></label
                                                         >
                                                     </div>
                                                 </div>
@@ -128,10 +128,10 @@
                                                     
                                                 <div class="row d-flex justify-content-end">
                                                     <div class="col-md-1 col-sm-2 offset-sm-3 offset-md-5 w-25 ">
-                                                        <button class="btn close " style="color: red; background-color: pink; padding: 12px 20px 12px 20px;"  data-dismiss="modal" aria-hidden="true" type="reset">Cancel</button>
+                                                        <button class="btn close " style="color: red; background-color: pink; padding: 12px 20px 12px 20px;"  data-dismiss="modal" aria-hidden="true" type="reset"><?= lang("Text.Cancel")?></button>
                                                     </div>
                                                     <div class="col-md-auto col-sm-2 w-50">
-                                                        <button class="btn border-success bg-light text-success px-4" type="submit">Save</button>
+                                                        <button class="btn border-success bg-light text-success px-4" type="submit"><?= lang("Text.Save")?></button>
                                                     </div>
                                                 </div>
                                             </form>
@@ -164,10 +164,10 @@
                             <div class="login-box bg-white box-shadow border-radius-10 pt-4">
                                 <form action="<?= site_url('choose_reports')?>" method="post" id="ChooseDate">
                                     <div class="row">
-                                        <div class="col-md-12 d-flex justify-content-start mb-3 h3 text-success" style="font-size: 25px;">Choose Date Range</div>
+                                        <div class="col-md-12 d-flex justify-content-start mb-3 h3 text-success" style="font-size: 25px;"><?= lang("Text.Choose Date Range")?></div>
                                     </div>
                                     <div class="form-group row mt-2">
-                                        <strong class="weight-600">Choosed For Report</strong>
+                                        <strong class="weight-600"><?= lang("Text.Choosed For Report")?></strong>
                                         <div class="input-group custom mb-0">
                                             <?php
                                                 if(isset($report)){
@@ -196,7 +196,7 @@
                                                     class="form-control form-control-lg rounded-0"
                                                     placeholder="start"
                                                 />
-                                                <label for="start">Start</label>
+                                                <label for="start"><?= lang("Text.Start")?></label>
                                             </div>
                                         </div>
                                         <div class="input-group custom col-md-6" >
@@ -208,17 +208,17 @@
                                                     class="form-control form-control-lg rounded-0"
                                                     placeholder="end"
                                                 />
-                                                <label for="end">End</label>
+                                                <label for="end"><?= lang("Text.End")?></label>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="row d-flex justify-content-end">
                                         <div class="col-md-1 col-sm-2 offset-sm-3 offset-md-5 w-25 ">
-                                            <button class="btn  close" style="color: red; background-color: pink; padding: 12px 20px 12px 20px;" type="button" data-dismiss="modal" aria-hidden="true" type="reset">Cancel</button>
+                                            <button class="btn  close" style="color: red; background-color: pink; padding: 12px 20px 12px 20px;" type="button" data-dismiss="modal" aria-hidden="true" type="reset"><?= lang("Text.Cancel")?></button>
                                         </div>
                                         <div class="col-md-auto col-sm-2 w-50">
-                                            <button class="btn border-success bg-light text-success px-4" id="save" type="submit">Save</button>
+                                            <button class="btn border-success bg-light text-success px-4" id="save" type="submit"><?= lang("Text.Save")?></button>
                                         </div>
                                     </div>
                                 </form>
@@ -237,10 +237,10 @@
                             <div class="login-box bg-white box-shadow border-radius-10 pt-4">
                                 <form action="<?= site_url('choose_reports')?>" method="post" id="ChooseDate">
                                     <div class="row">
-                                        <div class="col-md-12 d-flex justify-content-start mb-3 h3 text-success" style="font-size: 25px;">Choose Date Range</div>
+                                        <div class="col-md-12 d-flex justify-content-start mb-3 h3 text-success" style="font-size: 25px;"><?= lang("Text.Choose Date Range")?></div>
                                     </div>
                                     <div class="form-group row mt-2">
-                                        <strong class="weight-600">Choosed For Report</strong>
+                                        <strong class="weight-600"><?= lang("Text.Choosed For Report")?></strong>
                                         <div class="input-group custom mb-0">
                                             <div class="form-floating col-md-4 px-1">
                                                 <input
@@ -264,7 +264,7 @@
                                                     class="form-control form-control-lg rounded-0"
                                                     placeholder="start"
                                                 />
-                                                <label for="start">Start</label>
+                                                <label for="start"><?= lang("Text.Start")?></label>
                                             </div>
                                         </div>
                                         <div class="input-group custom col-md-6" >
@@ -276,17 +276,17 @@
                                                     class="form-control form-control-lg rounded-0"
                                                     placeholder="end"
                                                 />
-                                                <label for="end">End</label>
+                                                <label for="end"><?= lang("Text.End")?></label>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div class="row d-flex justify-content-end">
                                         <div class="col-md-1 col-sm-2 offset-sm-3 offset-md-5 w-25 ">
-                                            <button class="btn  close" style="color: red; background-color: pink; padding: 12px 20px 12px 20px;" type="button" data-dismiss="modal" aria-hidden="true" type="reset">Cancel</button>
+                                            <button class="btn  close" style="color: red; background-color: pink; padding: 12px 20px 12px 20px;" type="button" data-dismiss="modal" aria-hidden="true" type="reset"><?= lang("Text.Cancel")?></button>
                                         </div>
                                         <div class="col-md-auto col-sm-2 w-50">
-                                            <button class="btn border-success bg-light text-success px-4" id="save" type="submit">Save</button>
+                                            <button class="btn border-success bg-light text-success px-4" id="save" type="submit"><?= lang("Text.Save")?></button>
                                         </div>
                                     </div>
                                 </form>
@@ -301,7 +301,7 @@
 
                 <div class="xs-pd-20-10 pd-ltr-20">
                     <div class="title pb-20">
-                        <h1 class="h1 mb-0">Reports</h1>
+                        <h1 class="h1 mb-0"><?= lang("Text.Repports")?></h1>
                     </div>
 
                     <div class="row pb-10">
@@ -309,7 +309,7 @@
                             <div class="card-box min-height-200px pd-20  pb-0" data-bgcolor="none">
                                 <div class="d-flex justify-content-between pb-20 text-white">
                                     <div class="icon h2 text-center w-100" style="color:#03AC13;">
-                                        <i class="">Livestock</i>
+                                        <i class=""><?= lang("Text.Livestock")?></i>
                                     </div>
                                 </div>
                                 <div class="sidebar-menu">
@@ -317,14 +317,14 @@
                                         <li class=" p-0 rounded-3 mb-2 kua" data-value="Band" style="background-color: rgba(100,250,20,0.2);">
                                             <a href="#" class="dropdown-toggle no-arrow d-flex justify-content-between">
                                                 <span class="micon icon-copy dw dw-fish"></span>
-                                                <span class="mtext">Band</span>
+                                                <span class="mtext"><?= lang("Text.Band")?></span>
                                                 <i class="fa fa-mail-forward align-self-center pt-1"></i>
                                             </a>
                                         </li>
                                         <li class=" px-0 rounded-3 kua" data-value="Deaths" style="background-color: rgba(100,250,20,0.2);">
                                             <a href="#" class="dropdown-toggle no-arrow d-flex justify-content-between">
                                                 <span class="micon icon-copy fi-skull"></span>
-                                                <span class="mtext">Deaths</span>
+                                                <span class="mtext"><?= lang("Text.Deaths")?></span>
                                                 <i class="fa fa-mail-forward align-self-center pt-1"></i>
                                             </a>
                                         </li>
@@ -338,7 +338,7 @@
                             <div class="card-box min-height-200px pd-20 pb-0" data-bgcolor="none">
                                 <div class="d-flex justify-content-between pb-20 text-white">
                                     <div class="icon h2 text-center w-100" style="color:#03AC13;">
-                                        <i class="">Ressources</i>
+                                        <i class=""><?= lang("Text.Ressources")?></i>
                                     </div>
                                 </div>
                                 <div class="sidebar-menu">
@@ -346,14 +346,14 @@
                                         <li class=" p-0 rounded-3 mb-2 kua" data-value="Food" style="background-color: rgba(100,250,20,0.2);">
                                             <a href="#" class="dropdown-toggle no-arrow d-flex justify-content-between">
                                                 <span class="micon icon-copy dw dw-fried-egg"></span
-                                                ><span class="mtext">Food</span>
+                                                ><span class="mtext"><?= lang("Text.Food")?></span>
                                                 <i class="fa fa-mail-forward align-self-center pt-1"></i>
                                             </a>
                                         </li>
                                         <li class=" px-0 rounded-3 kua" data-value="Treat" style="background-color: rgba(100,250,20,0.2);">
                                             <a href="#" class="dropdown-toggle no-arrow d-flex justify-content-between">
                                                 <span class="micon bi bi-eyedropper"></span
-                                                ><span class="mtext">Treat</span>
+                                                ><span class="mtext"><?= lang("Text.Treat")?></span>
                                                 <i class="fa fa-mail-forward align-self-center pt-1"></i>
                                             </a>
                                         </li>
@@ -367,7 +367,7 @@
                             <div class="card-box min-height-200px pd-20 pb-0" data-bgcolor="none">
                                 <div class="d-flex justify-content-between pb-20 text-white">
                                     <div class="icon h2 text-center w-100" style="color:#03AC13;">
-                                        <i class="">Products</i>
+                                        <i class=""><?= lang("Text.Product")?></i>
                                     </div>
                                 </div>
                                 <div class="sidebar-menu">
@@ -375,14 +375,14 @@
                                         <li class=" px-0 rounded-3 mb-2 kua" data-value="Yields" style="background-color: rgba(100,250,20,0.2);">
                                             <a href="#" class="dropdown-toggle no-arrow d-flex justify-content-between">
                                                 <span class="micon icon-copy dw dw-eggplant"></span
-                                                ><span class="mtext">Yields</span>
+                                                ><span class="mtext"><?= lang("Text.Yields")?></span>
                                                 <i class="fa fa-mail-forward align-self-center pt-1"></i>
                                             </a>
                                         </li>
                                         <li class=" px-0 rounded-3 kua" data-value="Sales" style="background-color: rgba(100,250,20,0.2);">
                                             <a href="#" class="dropdown-toggle no-arrow d-flex justify-content-between">
                                                 <span class="micon icon-copy dw dw-food-cart"></span
-                                                ><span class="mtext">Sales</span>
+                                                ><span class="mtext"><?= lang("Text.Sales")?></span>
                                                 <i class="fa fa-mail-forward align-self-center pt-1"></i>
                                             </a>
                                         </li>
@@ -401,7 +401,8 @@
                                         <li class=" p-0 rounded-3" style="background-color: rgba(100,250,20,0.2);">
                                         <a href="#" class="dropdown-toggle no-arrow d-flex justify-content-between" data-backdrop="static" data-toggle="modal" data-target="#login-modal" type="button">
                                             <span class="micon icon-copy bi bi-ui-checks"></span>
-                                            <strong class="mtext">Custom Report</strong>
+                                            <strong class="mtext"><?= lang("Text.Custom Report")?>
+                                            </strong>
                                             <i class="fa fa-mail-forward align-self-center pt-1"></i>
                                         </a>
                                             

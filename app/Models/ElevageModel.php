@@ -12,7 +12,7 @@ class ElevageModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = true;
     protected $protectFields    = true;
-    protected $allowedFields    = ['nom_elevage', 'date_obtention', 'quantite', 'description_elevage', 'type', 'created_by', 'updated_by', 'deleted_by'];
+    protected $allowedFields    = ['nom_elevage', 'date_obtention', 'quantite', 'qte_initial', 'description_elevage', 'type', 'created_by', 'updated_by', 'deleted_by'];
 
     protected bool $allowEmptyInserts = false;
     protected bool $updateOnlyChanged = true;
@@ -54,10 +54,16 @@ class ElevageModel extends Model
     protected $beforeDelete   = [];
     protected $afterDelete    = [];
 
+    public function BandNum(){
+        return $this->selectCount('id_elevage', 'nbr')
+                    ->findAll();
+    }
     public function Band($start, $end){
         return $this->select('*')
                     ->where("date_obtention BETWEEN '$start' AND '$end'")
                     ->orderBy('date_obtention', 'ASC')
                     ->findAll();
     }
+
+    
 }

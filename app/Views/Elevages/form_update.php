@@ -5,7 +5,8 @@
             <div class="pd-20 card-box mb-30">
                 <form action="<?= site_url('edit_elevage')?>" method="put">
                     <div class="row">
-                        <div class="col-md-12 d-flex justify-content-start mb-3 h3 text-success" style="font-size: 25px;">New Animal Band</div>
+                        <div class="col-md-12 d-flex justify-content-start mb-3 h3 text-success" style="font-size: 25px;"><?= lang("Text.Update Animal Band")?>
+                        </div>
                     </div>
 
                     <div class="form-group row mt-2 mb-0">
@@ -23,7 +24,8 @@
                                             }
                                         ?>
                                 </select>
-                                <label for="type">Specie*</label>
+                                <label for="type"><?= lang("Text.Species")?>
+                                *</label>
                             </div>
                         </div>
                     </div>
@@ -46,7 +48,8 @@
                                     placeholder="Name*"
                                     value="<?= $data1['nom_elevage']?>"
                                 />
-                                <label for="name">Name*</label>
+                                <label for="name"><?= lang("Text.Name")?>
+                                *</label>
                             </div>
                         </div>
                     </div>
@@ -62,7 +65,8 @@
                                     placeholder="Date*"
                                     value="<?= $data1['date_obtention']?>"
                                 />
-                                <label for="date">Date*</label>
+                                <label for="date"><?= lang("Text.Date")?>
+                                *</label>
                             </div>
                         </div>
                         <div class="input-group custom col-md-6" >
@@ -76,7 +80,8 @@
                                     placeholder="Quantity*"
                                     value="<?= $data1['qte_initial']?>"
                                 />
-                                <label for="qty">Quantity*</label>
+                                <label for="qty"><?= lang("Text.Quantity")?>
+                                *</label>
                             </div>
                         </div>
                     </div>
@@ -91,16 +96,19 @@
                                 style="height: 100px;"
                                 value="<?= $data1['description_elevage']?>"
                             >
-                            <label for="description">Description*</label>
+                            <label for="description"><?= lang("Text.Description")?>
+                            *</label>
                         </div>
                     </div>
 
                     <div class="row d-flex justify-content-center">
                         <div class="col-md-1 col-sm-2 offset-sm-3 offset-md-5 w-25">
-                            <button class="btn border-light text-danger" type="reset">Cancel</button>
+                            <button class="btn border-light text-danger" type="reset"><?= lang("Text.Cancel")?>
+                            </button>
                         </div>
                         <div class="col-md-auto col-sm-2 w-50">
-                            <button class="btn border-success bg-light text-success px-4" type="submit">Save</button>
+                            <button class="btn border-success bg-light text-success px-4" type="submit"><?= lang("Text.Save")?>
+                            </button>
                         </div>
                     </div>
                 </form>

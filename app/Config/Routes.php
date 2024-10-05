@@ -18,6 +18,14 @@ $routes->get('update_form_type/(:num)', 'TypeController::updateFormType/$1');
 $routes->get('edit_type', 'TypeController::updateType');
 $routes->get('delete_type/(:num)', 'TypeController::deleteType/$1');
 
+// routes types
+$routes->get('create_form_unite', 'UniteController::createFormUnite');
+$routes->post('insert_unite', 'UniteController::createUnite');
+$routes->get('list_unite', 'UniteController::uniteList');
+$routes->get('update_form_unite/(:num)', 'UniteController::updateFormUnite/$1');
+$routes->get('edit_unite', 'UniteController::updateUnite');
+$routes->get('delete_unite/(:num)', 'UniteController::deleteUnite/$1');
+
 //routes Elevage
 $routes->get('create_form_elevage', 'ElevageController::createFormElevage');
 $routes->post('insert_elevage', 'ElevageController::createElevage');
@@ -28,13 +36,14 @@ $routes->get('delete_elevage/(:num)', 'ElevageController::deleteElevage/$1');
 
 //routes personnels
 $routes->get('create_form_personnel', 'PersonnelController::createFormPersonnel');
-$routes->get('dashboard', 'PersonnelController::dashboard');
+$routes->get('dashboard', 'PersonnelController::dashboard', ['filter'=> 'login']);
 $routes->post('insert_personnel', 'PersonnelController::createPersonnel');
 $routes->get('list_personnel', 'PersonnelController::personnelList');
 $routes->get('update_form_personnel/(:num)', 'PersonnelController::updateFormPersonnel/$1');
 $routes->get('edit_personnel', 'PersonnelController::updatePersonnel');
 $routes->get('delete_personnel/(:num)', 'PersonnelController::deletePersonnel/$1');
 $routes->post('authentif', 'PersonnelController::authentification');
+$routes->get('logout', 'PersonnelController::logout');
 
 
 //routes ressources
@@ -78,6 +87,24 @@ $routes->get('update_form_produit/(:num)', 'ProduitController::updateFormProduit
 $routes->get('edit_produit', 'ProduitController::updateProduit');
 $routes->get('delete_produit/(:num)', 'ProduitController::deleteProduit/$1');
 
+// routes de l'autocompletion
+$routes->get('autocomplete', 'AutocompleteController::autocomplete');
+$routes->get('ajax', 'AutocompleteController::index');
+$routes->post('set', 'AutocompleteController::setName');
 
+$routes->get('labelComplete', 'ProduitController::autocomplete');
+
+$routes->get('uniteComplete', 'ProduitController::uniteComplete');
+
+$routes->get('CliName', 'ProduitController::CliName');
+
+$routes->get('labRec', 'ProduitController::labRec');
+
+$routes->get('labRec2', 'MouvementController::labRec2');
+
+
+// language
+// $routes->get('/', 'SiteController::index');
+$routes->get('lang/{locale}', 'Language::index');
 
 

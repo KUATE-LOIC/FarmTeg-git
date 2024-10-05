@@ -5,9 +5,9 @@
 				<div class="min-height-200px">
                 <div class="card-box mb-30">
     <div class="pd-20 d-flex justify-content-between">
-        <h2 class="card-title text-blue my-1" style="font-size: 25px;">Resources</h2>
+        <h2 class="card-title text-blue my-1" style="font-size: 25px;"><?= lang("Text.Ressources")?></h2>
 
-        <a href="<?= site_url('show_form_ressource')?>" class="btn btn-success "><span class="mtext text-nowrap">Add Resource</span></a>
+        <!-- <a href="<?= site_url('show_form_ressource')?>" class="btn btn-success "><span class="mtext text-nowrap">Add Resource</span></a> -->
     </div>
         
     <div class="pb-20">
@@ -15,10 +15,10 @@
             <thead>
                 <tr>
                     <th class="table-plus">#</th>
-                    <th>Label</th>
-                    <th>Quantity</th>
-                    <th class="datatable-nosort">Ressource Type</th>
-                    <th>Purchase Date</th>
+                    <th><?= lang("Text.Label")?></th>
+                    <th><?= lang("Text.Quantity")?></th>
+                    <th class="datatable-nosort"><?= lang("Text.Ressource Type")?></th>
+                    <th><?= lang("Text.Date")?></th>
                     <th class="datatable-nosort">Action</th>
                 </tr>
             </thead>

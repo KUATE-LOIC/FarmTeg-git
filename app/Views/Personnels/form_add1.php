@@ -17,6 +17,8 @@
 			sizes="32x32"
 			href="<?= base_url('assets/vendors/images/favicon-32x32.png')?>"
 		/>
+		<link href="<?= base_url('assets/niceadmin/vendor/bootstrap/css/bootstrap.min.css')?>" rel="stylesheet">
+
 		<link
 			rel="icon"
 			type="image/png"
@@ -85,35 +87,20 @@
 	</head>
 
 	<body class="login-page">
-		<div class="login-header box-shadow">
-			<div
-				class="container-fluid d-flex justify-content-between align-items-center"
-			>
-				<div class="brand-logo">
-					<a href="login.html">
-						<img src="<?= base_url('assets/vendors/images/deskapp-logo.svg')?>" alt="" />
-					</a>
-				</div>
-				<div class="login-menu">
-					<ul>
-						<li><a href="login.html">Login</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
+		
 		<div class="register-page-wrap d-flex align-items-center flex-wrap justify-content-center">
 			<div class="container">
 				<div class="row align-items-center">
-					<div class="col-md-6 col-lg-7">
-						<img src="<?= base_url('assets/vendors/images/register-page-img.png')?>" alt="" />
+					<div class="col-md-3 col-lg-3">
+						<!-- <img src="<?= base_url('assets/vendors/images/register-page-img.png')?>" alt="" /> -->
 					</div>
-					<div class="col-md-6 col-lg-5">
+					<div class="col-md-6 col-lg-6">
 						<div class="register-box bg-white box-shadow border-radius-10">
 							<div class="wizard-content">
-								<form class="tab-wizard2 wizard-circle wizard">
+								<form class="tab-wizard2 wizard-circle wizard" id="register" action="<?= site_url('insert_personnel')?>" method="post">
 
-									<!-- Step 1 -->
-                                    <h5>Personal Information</h5>
+                                <!-- Step 1 -->
+                                <h5>Personal Information</h5>
 									<section>
 										<div class="form-wrap max-width-600 mx-auto">
                                             <div class="input-group custom " >
@@ -171,8 +158,9 @@
 											
 										</div>
 									</section>
-									<!-- Step 2 -->
-									<h5>Personal Information</h5>
+
+                                    <!-- Step 2 -->
+									<h5>Basic Account Credentials</h5>
 									<section>
 										<div class="form-wrap max-width-600 mx-auto">
                                             <div class="input-group custom " >
@@ -228,8 +216,9 @@
 											
 										</div>
 									</section>
+
 									<!-- Step 3 -->
-									<h5>Overview Information</h5>
+                                    <h5>Overview Information</h5>
 									<section>
 										<div class="form-wrap max-width-600 mx-auto">
 											<ul class="register-info">
@@ -277,6 +266,7 @@
 											</div>
 										</div>
 									</section>
+									
 								</form>
 							</div>
 						</div>
@@ -309,15 +299,14 @@
 			>
 				<div class="modal-content">
 					<div class="modal-body text-center font-18">
-						<h3 class="mb-20">Form Submitted!</h3>
+						<h3 class="mb-20">Confirmation!</h3>
 						<div class="mb-30 text-center">
 							<img src="<?= base_url('assets/vendors/images/success.png')?>" />
 						</div>
-						Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-						eiusmod
+						You are about to create a new account
 					</div>
 					<div class="modal-footer justify-content-center">
-						<a href="login.html" class="btn btn-primary">Done</a>
+						<button class="btn btn-primary" id="yes">Yes</button>
 					</div>
 				</div>
 			</div>
@@ -414,12 +403,12 @@
 			></iframe
 		></noscript>
 		<!-- End Google Tag Manager (noscript) -->
+		<script>
+			$(function(){
+				$("#yes").click(function(){
+					document.getElementById("register").submit();
+				})
+			});
+		</script>
 	</body>
 </html>
-
-
-
-
-
-
-

@@ -6,12 +6,18 @@ use App\Controllers\BaseController;
 use CodeIgniter\HTTP\ResponseInterface;
 use Psr\Log\LoggerInterface;
 use App\Models\PersonnelModel;
+use App\Models\ElevageModel;
+use App\Models\ProduitModel;
 
 class PersonnelController extends BaseController
 {
     protected $personnelModel;
+    protected $elevageModel;
+    protected $produitModel;
     public function __construct(){
         $this->personnelModel = new PersonnelModel();
+        $this->elevageModel = new ElevageModel();
+        $this->produitModel = new ProduitModel();
     }
 
     public function index()
@@ -37,8 +43,7 @@ class PersonnelController extends BaseController
             $data['erreurs'] = $this->personnelModel->errors();
         }
         $data['personnels'] = $this->getPersonnels();
-        return view('login', $data);
-        // return view('Personnels/list_personnel', $data);
+        return view('Personnels/list_personnel', $data);
     }
 
     public function personnelList()
@@ -93,16 +98,90 @@ class PersonnelController extends BaseController
         ])->getRowArray();
 
         if($verify && password_verify($data['mot_de_passe'], $verify['mot_de_passe'])){
-        
-            return view('Personnels/dashboard');
+            $session = session();
+            $session -> set([
+                'id_personnel' => $verify['id_personnel'],
+                'email_personnel' => $verify['email_personnel'],
+                'nom_personnel' => $verify['nom_personnel'],
+                'logged_in' => true
+            ]);
+
+            return redirect()->to('dashboard');
         }
         else{
-        return redirect()->to('login');
-        }
+            $data1['error'] = "Identifiants incorrects";
+            return view('login',$data1);        }
+    }
+
+    public function logout()
+    {
+        $session = session();
+        // dd($session);
+        $session->destroy();
+        return redirect()->to('/');
     }
 
     public function dashboard()
     {
-            return view('Personnels/dashboard');
+            // $data['nbrCli']['nbr'] = $this->produitModel->countClient();
+
+            $data['nbrSale'] = $this->produitModel->countSales();
+            $data['morts'] = $this->produitModel->countdeath();
+            
+            $numBan = $this->elevageModel->BandNum();
+            foreach($numBan as $key => $val0){
+                $data['numBan'] = $val0;
+            }
+            $pers = $this->personnelModel->PersNum();
+            foreach($pers as $key => $val0){
+                $data['pers'] = $val0;
+            }
+            // dd($data);
+            
+            // $data2['qte'] = $this->produitModel->qteP();
+            // $data2['date'] = $this->produitModel->dateP();
+            // $data3['label'] = $this->produitModel->pielib();
+            // $data3['total'] = $this->produitModel->pietot();
+            // // d($data3['label']);
+            // $i = 0;
+            // foreach($data2['qte'] as $key => $value){
+            //     foreach($value as $key => $val0){
+            //         $data0[$i] = $val0;
+            //         $i++;
+            //     }
+            //     $i++;
+            // }
+            // $data['qte'] = $data0;
+            // // dd($data);
+    
+            // foreach($data2['date'] as $key => $value){
+            //     foreach($value as $key => $val01){
+            //         $data01[$i] = $val01;
+            //         $i++;
+            //     }
+            //     $i++;
+            // }
+            // $data['date'] = $data01;
+            // // dd($data);
+    
+            // foreach($data3['label'] as $key => $value){
+            //     foreach($value as $key => $val02){
+            //         $data02[$i] = $val02;
+            //         $i++;
+            //     }
+            //     $i++;
+            // }
+            // $data['label'] = $data02;
+    
+            // foreach($data3['total'] as $key => $value){
+            //     foreach($value as $key => $val03){
+            //         $data03[$i] = $val03;
+            //         $i++;
+            //     }
+            //     $i++;
+            // }
+            // $data['total'] = $data03;
+
+            return view('Personnels/dashboard', $data);
     }
 }

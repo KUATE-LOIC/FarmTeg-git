@@ -5,8 +5,7 @@
 				<div class="min-height-200px">
                 <div class="card-box mb-30">
     <div class="py-3 pr-5 pl-4 d-flex justify-content-between">
-        <h2 class="card-title text-blue my-1 mr-5" style="font-size: 25px;"><?= lang("Text.Specie List")?>
-        </h2>
+        <h2 class="card-title text-blue my-1 mr-5" style="font-size: 25px;"><?= lang("Text.Units")?></h2>
 
 
 
@@ -20,29 +19,27 @@
                     data-target="#login-modal"
                     type="button"
                 >
-                    <span class="btn btn-success px-4 "><span class="mtext text-nowrap"><?= lang("Text.New Specie")?>
-                    </span></span>
+                    <span class="btn btn-success px-4 "><span class="mtext text-nowrap"><?= lang("Text.Add Unite")?></span></span>
                 </a>
                 <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered">
                         <div class="modal-content">
                             <div class="login-box bg-white box-shadow border-radius-10">
-                                <form action="<?= site_url('insert_type')?>" method="post">
+                                <form action="<?= site_url('insert_unite')?>" method="post">
                                     <div class="row">
-                                        <div class="col-md-12 d-flex justify-content-start mb-3 h3 text-success" style="font-size: 25px;"><?= lang("Text.Add Specie")?>
-                                        </div>
+                                        <div class="col-md-12 d-flex justify-content-start mb-3 h3 text-success" style="font-size: 25px;"><?= lang("Text.New unite")?></div>
                                     </div>
                                     <div class="form-group row mt-2">
                                         <div class="input-group custom " >
                                             <div class="form-floating">
                                                 <input
-                                                    name="nom_type"
-                                                    id="name"
+                                                    name="libelle_unite"
+                                                    id="label"
                                                     type="text"
                                                     class="form-control form-control-lg rounded-0"
-                                                    placeholder="Name"
+                                                    placeholder="Label"
                                                 />
-                                                <label for="name"><?= lang("Text.Name")?>*</label>
+                                                <label for="label"><?= lang("Text.Label")?>*</label>
                                             </div>
                                         </div>
                                     </div>
@@ -50,14 +47,33 @@
                                     <div class="form-group row mt-2">
                                         <div class="input-group custom " >
                                             <div class="form-floating">
-                                                <textarea
-                                                    name="description_type"
-                                                    id="description"
+                                                <input
+                                                    name="prix_unitaire"
+                                                    id="prix"
                                                     class="form-control form-control-lg rounded-0"
-                                                    placeholder="Description*"
-                                                    style="height: 100px;"
-                                                ></textarea>
-                                                <label for="description"><?= lang("Text.Description")?>*</label>
+                                                    placeholder="prix*"
+                                                >
+                                                <label for="prix"><?= lang("Text.Price")?>*</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row mt-2">
+                                        <div class="input-group custom" >
+                                            <div class="form-floating">
+                                                <select class="form-select rounded-0" id="produit" aria-label="State" name="produit">
+                                                    <option value="" selected disabled hidden></option>
+                                                    <?php 
+                                                        $i=1;
+                                                        foreach($produit as $keys => $unite){
+                                                    ?>
+                                                    
+                                                    <option value="<?= $unite['id_produit']; ?>" ><?= $unite['libelle_produit']?></option>
+                                                        <?php
+                                                            }
+                                                        ?>
+                                                </select>
+                                                <label for="produit"><?= lang("Text.Product")?>*</label>
                                             </div>
                                         </div>
                                     </div>
@@ -84,24 +100,22 @@
             <thead>
                 <tr>
                     <th class="table-plus">#</th>
-                    <th class="datatable-nosort"><?= lang("Text.Name")?>
-                    </th>
-                    <th class="datatable-nosort">Description</th>
-                    <th><?= lang("Text.Creation Date")?>
-                    </th>
+                    <th class="datatable-nosort"><?= lang("Text.Label")?></th>
+                    <th class="datatable-nosort"><?= lang("Text.Price")?></th>
+                    <th class="datatable-nosort"><?= lang("Text.Product")?></th>
                     <th class="datatable-nosort">Action</th>
                 </tr>
             </thead>
             <tbody>
             <?php 
                 $i=1;
-                foreach($types as $keys => $type){
+                foreach($unites as $keys => $unite){
             ?>
             <tr>
                 <td class="table-plus"><?= $i++;?></td>
-                <td><?= $type['nom_type']?></td>
-                <td><?= $type['description_type']?></td>
-                <td><?= $type['created_at']?></td>
+                <td><?= $unite['libelle_unite']?></td>
+                <td><?= $unite['prix_unitaire']?></td>
+                <td><?= $unite['produit']?></td>
                 <td class="d-flex">
                     <!-- <div class="dropdown">
                         <a
@@ -117,15 +131,15 @@
                         > -->
                             <!-- <a href="#"><i class="dw dw-eye mr-1"></i>|</a> -->
 
-                            <a href="<?= site_url('update_form_type/').$type['id_type']?>"><i class="dw dw-edit mx-2 text-success"></i> | </a>
+                            <a href="<?= site_url('unite/').$unite['id_unite']?>"><i class="dw dw-edit mx-2 text-success"></i> | </a>
 
-                            <a onclick="Validation(<?= $type['id_type']?>)" href="<?= site_url('delete_type/').$type['id_type']?>"><i class="dw dw-delete-3 ml-2 text-danger"></i></a>
+                            <a onclick="Validation(<?= $unite['id_unite']?>)" href="<?= site_url('delete_unite/').$unite['id_unite']?>"><i class="dw dw-delete-3 ml-2 text-danger"></i></a>
                         <!-- </div> -->
                     <!-- </div> -->
                 </td>
-                    <form action="<?= site_url('delete_type')?>"  id="valider" method="put">
+                    <form action="<?= site_url('delete_unite')?>"  id="valider" method="put">
                             <div class="col-md-12">
-                                <input class="form-control" type="hidden" name="id_type" id="id" value="<?= $type['id_type']?>">
+                                <input class="form-control" type="hidden" name="id_unite" id="id" value="<?= $unite['id_unite']?>">
                             </div>
                     </form>
             </tr>

@@ -5,7 +5,8 @@
     <div class="pd-20 card-box mb-30">
         <form action="<?= site_url('insert_produit')?>" method="post">
             <div class="row">
-                <div class="col-md-12 d-flex justify-content-start mb-3 h3 text-success text-nowrap" style="font-size: 25px;">New Yield</div>
+                <div class="col-md-12 d-flex justify-content-start mb-3 h3 text-success text-nowrap" style="font-size: 25px;"><?= lang("Text.New Yield")?>
+                </div>
             </div>
             <div class="form-group row mt-2 mb-0">
                 <div class="input-group custom col-md-6" id="col-4">
@@ -22,7 +23,8 @@
                                     }
                                 ?>
                         </select>
-                        <label for="animal">Animal Yield*</label>
+                        <label for="animal"><?= lang("Text.Animal Yield")?>
+                        *</label>
                     </div>
                 </div>
 
@@ -30,10 +32,13 @@
                     <div class="form-floating">
                         <select class="form-select rounded-0" id="type" name="type_produit" aria-label="State">
                             <option selected hidden disabled></option>
-                            <option id="self" value="Self">Self</option>
-                            <option  value="Other">Other</option>
+                            <option id="self" value="Self"><?= lang("Text.Self")?>
+                            </option>
+                            <option  value="Other"><?= lang("Text.Other")?>
+                            </option>
                         </select>
-                        <label for="type">Yield Type*</label>
+                        <label for="type"><?= lang("Text.Yield Type")?>
+                        *</label>
                     </div>
                 </div>
 
@@ -42,12 +47,13 @@
                         <input type="hidden" name="statut_produit" value="Harvest">
                         <input
                             name="libelle_produit"
-                            id="label"
+                            id="label1"
                             type="text"
                             class="form-control form-control-lg rounded-0"
                             placeholder="Label"
                         />
-                        <label for="labal">Label*</label>
+                        <label for="labal1"><?= lang("Text.Label")?>
+                        *</label>
                     </div>
                 </div>
             </div>
@@ -59,10 +65,13 @@
                             name="date_produit"
                             id="date"
                             type="date"
+                            value="<?= date('Y-m-d')?>"
+                            readonly
                             class="form-control form-control-lg rounded-0"
                             placeholder=""
                         />
-                        <label for="date">Date*</label>
+                        <label for="date"><?= lang("Text.Date")?>
+                        *</label>
                     </div>
                 </div>
 
@@ -75,7 +84,8 @@
                             class="form-control form-control-lg rounded-0"
                             placeholder="Quantity"
                         />
-                        <label for="quantite">Quantity*</label>
+                        <label for="quantite"><?= lang("Text.Quantity")?>
+                        *</label>
                     </div>
                 </div>
                 
@@ -88,9 +98,9 @@
                             value="/"
                         />
                         <input
-                            name="montant"
+                            name="nom_mouvement"
                             id="cost"
-                            value="/"
+                            value="Product"
                             type="hidden"
                             class="form-control form-control-lg rounded-0"
                             placeholder="Cost"
@@ -115,10 +125,12 @@
                     
             <div class="row d-flex justify-content-end">
                 <div class="col-md-1 col-sm-2 offset-sm-3 offset-md-5 w-25">
-                    <button class="btn border-light text-danger" type="reset">Cancel</button>
+                    <button class="btn border-light text-danger" type="reset"><?= lang("Text.Cancel")?>
+                    </button>
                 </div>
                 <div class="col-md-auto col-sm-2 w-50">
-                    <button class="btn border-success bg-light text-success px-4" type="submit">Save</button>
+                    <button class="btn border-success bg-light text-success px-4" type="submit"><?= lang("Text.Save")?>
+                    </button>
                 </div>
             </div>
         </form> 
@@ -163,6 +175,34 @@
                 }
             }
         })
+    })
+</script>
+
+<script>
+    $(function(){
+        
+        $('#label1').autocomplete({
+            source: function(request, response){
+                $.ajax({
+                    url: "<?= site_url('/labRec')?>",
+                    methode: "GET",
+                    data: {
+                        keyword: request.term
+                    },
+                    success: function(data){
+                        response(data);
+                        console.log(data);
+                    }
+                });
+            },
+            minLength: 1,
+            select: function(event, ui){
+                $('#label1').val(ui.item.label);
+                // $('#prix').val(ui.item.value);
+                return false;
+            }
+        });
+
     })
 </script>
 <?= $this->include('layouts/footer.php');?>

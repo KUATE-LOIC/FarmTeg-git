@@ -4,18 +4,23 @@
 			<div class="pd-ltr-20 xs-pd-20-10">
 				<div class="min-height-200px">
                 <div class="card-box mb-30">
-    <div class="pd-20">
-        <h2 class="card-title text-blue mb-0" style="font-size: 25px;">Employees List</h2>
+    <div class="pd-20 d-flex justify-content-between">
+        <h2 class="card-title text-blue my-1" style="font-size: 25px;"><?= lang("Text.Employees List")?>
+        </h2>
+        <a href="<?= site_url('create_form_personnel')?>" class="btn btn-success "><span class="mtext text-nowrap"><?= lang("Text.Add")?>
+        </span></a>
     </div>
     <div class="pb-20">
         <table class="data-table table stripe hover nowrap">
             <thead>
                 <tr>
                     <th class="table-plus">#</th>
-                    <th>Name</th>
+                    <th><?= lang("Text.Name")?></th>
                     <th>Telephone</th>
-                    <th>Gender</th>
-                    <th>ID Number</th>
+                    <th><?= lang("Text.Gender")?>
+                    </th>
+                    <th><?= lang("Text.ID Number")?>
+                    </th>
                     <th>Email</th>
                     <th>Function</th>
                     <th class="datatable-nosort">Action</th>

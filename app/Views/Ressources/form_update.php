@@ -24,7 +24,7 @@
                             placeholder="Label"
                             value="<?= $ressources['libelle_ressource']?>"
                         />
-                        <label for="label">Label*</label>
+                        <label for="label"><?= lang("Text.Label")?>*</label>
                     </div>
                 </div>
 
@@ -39,7 +39,7 @@
                             value="<?= $ressources['type_ressource']?>" 
                             readonly
                         />
-                        <label for="type">Ressource Type*</label>
+                        <label for="type"><?= lang("Text.Ressource Type")?>*</label>
                     </div>
                 </div>
             </div>
@@ -55,7 +55,7 @@
                             placeholder="Quantity"
                             value="<?= $ressources['quantite_ressources']?>"
                         />
-                        <label for="quantite">Quantity*</label>
+                        <label for="quantite"><?= lang("Text.Quantity")?>*</label>
                     </div>
                 </div>
 
@@ -64,9 +64,11 @@
                         <select class="form-select rounded-0" id="unit" name="unite_ressources" aria-label="State">
                             <!-- <option selected hidden disabled></option> -->
                             <option selected hidden value="<?= $ressources['unite_ressource']?>"><?= $ressources['unite_ressource']?></option>
+                            <option value="Litres">Litres</option>
+
                         </select>
                         
-                        <label for="unit">Unit*</label>
+                        <label for="unit"><?= lang("Text.Units")?>*</label>
                     </div>
                 </div>
                 
@@ -80,7 +82,7 @@
                             placeholder="Cost"
                             value="<?= $ressources['cout_ressource']?>"
                         />
-                        <label for="cost">Cost*</label>
+                        <label for="cost"><?= lang("Text.Cost")?>*</label>
                     </div>
                 </div>
 
@@ -94,7 +96,7 @@
                             placeholder=""
                             value="<?= $ressources['date_obtention']?>"
                         />
-                        <label for="date">Purchase Date*</label>
+                        <label for="date"><?= lang("Text.Date")?>*</label>
                     </div>
                 </div>
             </div>
@@ -120,10 +122,10 @@
                     
             <div class="row d-flex justify-content-end">
                 <div class="col-md-1 col-sm-2 offset-sm-3 offset-md-5 w-25">
-                    <button class="btn border-light text-danger" type="reset">Cancel</button>
+                    <button class="btn border-light text-danger" style=" background-color: pink;" type="reset"><?= lang("Text.Cancel")?></button>
                 </div>
                 <div class="col-md-auto col-sm-2 w-50">
-                    <button class="btn border-success bg-light text-success px-4" type="submit">Save</button>
+                    <button class="btn border-success bg-light text-success px-4" type="submit"><?= lang("Text.Update")?></button>
                 </div>
             </div>
         </form> 

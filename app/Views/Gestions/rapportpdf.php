@@ -3,7 +3,7 @@
 <head>
 		<!-- Basic Page Info -->
 		<meta charset="utf-8" />
-		<title>DeskApp - Bootstrap Admin Dashboard HTML Template</title>
+		<title>FARMTEG</title>
 
 		<!-- Site favicon -->
 		<link
